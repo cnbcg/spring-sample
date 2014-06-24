@@ -7,7 +7,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 
 @Configuration
 @EnableWebMvc
-@ComponentScan(basePackages = { "com.yummynoodlebar.rest.controller" })
-public class MVCConfig extends WebMvcConfigurerAdapter {
+@ComponentScan(basePackages = { "com.yummynoodlebar.rest.controller", "com.yummynoodlebar.web.controller" })
+public class WebConfig extends WebMvcConfigurerAdapter {
 
 }

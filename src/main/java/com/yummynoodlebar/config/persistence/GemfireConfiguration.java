@@ -55,20 +55,22 @@ public class GemfireConfiguration {
 		};
 	}
 
-//	@Bean
-//	public StatusUpdateGemfireNotificationListener statusUpdateListener() {
-		//TODO ×¢²álistenrer
-//		return new StatusUpdateGemfireNotificationListener();
-//	}
+	// @Bean
+	// public StatusUpdateGemfireNotificationListener statusUpdateListener() {
+	// TODO ×¢²álistenrer
+	// return new StatusUpdateGemfireNotificationListener();
+	// }
 
-	@Bean(name = "gemfireTransactionManager")
-	public GemfireTransactionManager transactionManager(Cache gemfireCache, LocalRegionFactoryBean<String, OrderStatus> localRegionFactoryBean)
-			throws Exception {
-		GemfireTransactionManager transactionManager = new GemfireTransactionManager();
-		transactionManager.setCache(gemfireCache);
-		transactionManager.setRegion(localRegionFactoryBean.getObject());
-		return transactionManager;
-	}
+	// @Bean(name = "gemfireTransactionManager")
+	// public GemfireTransactionManager transactionManager(Cache gemfireCache,
+	// LocalRegionFactoryBean<String, OrderStatus> localRegionFactoryBean)
+	// throws Exception {
+	// GemfireTransactionManager transactionManager = new
+	// GemfireTransactionManager();
+	// transactionManager.setCache(gemfireCache);
+	// transactionManager.setRegion(localRegionFactoryBean.getObject());
+	// return transactionManager;
+	// }
 
 	//
 	// @Bean

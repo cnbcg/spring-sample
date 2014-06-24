@@ -10,26 +10,27 @@ import com.yummynoodlebar.events.menu.MenuItemDetails;
 
 public class WebDataFixture {
 
-	private static final String NAME = "Yummy Noodles";
-	private static final String CHEF_SPECIAL = "Special ";
-	private static final String LOW_CAL = "Low cal ";
+	public static final String STANDARD 	= "Yummy Noodles";
+	public static final String CHEF_SPECIAL = "Special Yummy Noodles";
+	public static final String LOW_CAL 		= "Low cal Yummy Noodles";
+	
 	private static final BigDecimal COST = new BigDecimal("10.99");
 	private static final int MINUTES_TO_PREPARE = 5;
 
 	public static AllMenuItemsEvent allMenuItems() {
+		return new AllMenuItemsEvent(allMenuItemDetails());
+	}
+
+	public static List<MenuItemDetails> allMenuItemDetails() {
 		List<MenuItemDetails> menuItemDetails = new ArrayList<MenuItemDetails>();
-		menuItemDetails.add(standardMenuItemDetails());
-		menuItemDetails.add(standardMenuItemDetails(CHEF_SPECIAL + NAME));
-		menuItemDetails.add(standardMenuItemDetails(LOW_CAL + NAME));
-		return new AllMenuItemsEvent(menuItemDetails);
+		menuItemDetails.add(standardMenuItemDetails(STANDARD));
+		menuItemDetails.add(standardMenuItemDetails(CHEF_SPECIAL));
+		menuItemDetails.add(standardMenuItemDetails(LOW_CAL));
+		return menuItemDetails;
 	}
 
 	private static MenuItemDetails standardMenuItemDetails(String name) {
 		return new MenuItemDetails(UUID.randomUUID(), name, COST, MINUTES_TO_PREPARE);
-	}
-
-	private static MenuItemDetails standardMenuItemDetails() {
-		return standardMenuItemDetails(NAME);
 	}
 
 }

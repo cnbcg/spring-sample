@@ -22,12 +22,13 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.context.WebApplicationContext;
 
+import com.yummynoodlebar.config.persistence.PersistenceConfig;
 import com.yummynoodlebar.rest.controller.fixture.RestDataFixture;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ActiveProfiles("dev")
 @WebAppConfiguration
-@ContextConfiguration(classes = { CoreConfig.class, MVCConfig.class })
+@ContextConfiguration(classes = { CoreConfig.class, WebConfig.class, PersistenceConfig.class })
 @Transactional
 @TransactionConfiguration(defaultRollback = true)
 public class RestDomainIntegrationTest {

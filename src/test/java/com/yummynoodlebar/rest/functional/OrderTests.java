@@ -23,7 +23,7 @@ public class OrderTests {
 
 	@Test
 	public void thatOrdersCanBeAddedAndQueried() {
-		ResponseEntity<Order> entity = postOrder();
+		ResponseEntity<Order> entity = postOrder(getHttpEntity(getHeaders("bcg", "bcg")));
 
 		Order order = entity.getBody();
 		String path = entity.getHeaders().getLocation().getPath();
@@ -39,11 +39,8 @@ public class OrderTests {
 
 	@Test
 	public void thatOrdersCannotBeAddedAndQueriedWithBadUser() {
-		HttpEntity<String> requestEntity = new HttpEntity<String>(RestDataFixture.standardOrderJSON(), getHeaders("bcg", "BADPASSWORD"));
-
-		RestTemplate template = new RestTemplate();
 		try {
-			ResponseEntity<Order> entity = template.postForEntity("http://localhost:8080/aggregators/orders", requestEntity, Order.class);
+			ResponseEntity<Order> entity = postOrder(getHttpEntity(getHeaders("bcg", "BADPASSWORD")));
 
 			fail("Request Passed incorrectly with status " + entity.getStatusCode());
 		} catch (HttpClientErrorException ex) {
@@ -53,21 +50,23 @@ public class OrderTests {
 
 	@Test
 	public void thatOrdersHaveCorrectHateoasLinks() {
-		ResponseEntity<Order> entity = postOrder();
+		ResponseEntity<Order> entity = postOrder(getHttpEntity(getHeaders("bcg", "bcg")));
 
 		Order order = entity.getBody();
-
 		String orderBase = "/aggregators/orders/" + order.getKey();
 
 		assertEquals(entity.getHeaders().getLocation().toString(), order.getLink("self").getHref());
 		assertTrue(order.getLink("Order Status").getHref().endsWith(orderBase + "/status"));
 	}
 
-	private ResponseEntity<Order> postOrder() {
-		HttpEntity<String> requestEntity = new HttpEntity<String>(RestDataFixture.standardOrderJSON(), getHeaders("bcg", "bcg"));
-
+	private ResponseEntity<Order> postOrder(HttpEntity<String> httpEntity) {
 		RestTemplate template = new RestTemplate();
-		return template.postForEntity("http://localhost:8080/aggregators/orders", requestEntity, Order.class);
+		return template.postForEntity("http://localhost:8080/aggregators/orders", httpEntity, Order.class);
+	}
+
+	private HttpEntity<String> getHttpEntity(HttpHeaders headers) {
+		HttpEntity<String> requestEntity = new HttpEntity<String>(RestDataFixture.standardOrderJSON(), headers);
+		return requestEntity;
 	}
 
 	private HttpHeaders getHeaders(final String username, final String password) {

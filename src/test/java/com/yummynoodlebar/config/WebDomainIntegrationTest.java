@@ -59,7 +59,7 @@ public class WebDomainIntegrationTest {
 	
 	@After
 	public void teardown() {
-		//mongo.dropCollection("menu");
+		mongo.dropCollection("menu");
 	}
 
 	@Test

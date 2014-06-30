@@ -47,8 +47,9 @@ public class WebAppInitializer extends AbstractAnnotationConfigDispatcherServlet
 		CharacterEncodingFilter characterEncodingFilter = new CharacterEncodingFilter();
 		characterEncodingFilter.setEncoding("UTF-8");
 
-		Filter springSecurityFilterChain = new DelegatingFilterProxy("springSecurityFilterChain");
-		return new Filter[] { characterEncodingFilter, springSecurityFilterChain };
+//TODO		Filter springSecurityFilterChain = new DelegatingFilterProxy("springSecurityFilterChain");
+//		return new Filter[] { characterEncodingFilter, springSecurityFilterChain };
+		return new Filter[] { characterEncodingFilter };
 	}
 
 	@Override

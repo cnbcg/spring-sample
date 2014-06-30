@@ -35,19 +35,19 @@ public class MenuPersistenceEventHandler implements MenuPersistenceService {
 
 	@Override
 	public MenuItemDetailsEvent requestMenuItemDetails(RequestMenuItemDetailsEvent requestMenuItemDetailsEvent) {
-		MenuItem item = menuItemRepository.findOne(requestMenuItemDetailsEvent.getKey());
+		MenuItem item = menuItemRepository.findOne(requestMenuItemDetailsEvent.getId());
 
 		if (item == null) {
-			return MenuItemDetailsEvent.notFound(requestMenuItemDetailsEvent.getKey());
+			return MenuItemDetailsEvent.notFound(requestMenuItemDetailsEvent.getId());
 		}
 
-		return new MenuItemDetailsEvent(requestMenuItemDetailsEvent.getKey(), item.toStatusDetails());
+		return new MenuItemDetailsEvent(requestMenuItemDetailsEvent.getId(), item.toStatusDetails());
 	}
 
 	@Override
 	public MenuItemDetailsEvent createMenuItem(CreateMenuItemEvent createMenuItemEvent) {
 		MenuItem item = menuItemRepository.save(MenuItem.fromStatusDetails(createMenuItemEvent.getDetails()));
 
-		return new MenuItemDetailsEvent(item.getKey(), item.toStatusDetails());
+		return new MenuItemDetailsEvent(item.getId(), item.toStatusDetails());
 	}
 }

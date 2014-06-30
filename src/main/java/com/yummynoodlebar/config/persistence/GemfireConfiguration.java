@@ -6,7 +6,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.FilterType;
 import org.springframework.data.gemfire.CacheFactoryBean;
 import org.springframework.data.gemfire.GemfireTemplate;
-import org.springframework.data.gemfire.GemfireTransactionManager;
 import org.springframework.data.gemfire.LocalRegionFactoryBean;
 import org.springframework.data.gemfire.repository.config.EnableGemfireRepositories;
 import org.springframework.data.gemfire.support.GemfireCacheManager;
@@ -15,7 +14,6 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 import com.gemstone.gemfire.cache.Cache;
 import com.yummynoodlebar.persistence.domain.OrderStatus;
 import com.yummynoodlebar.persistence.repository.OrderStatusRepository;
-import com.yummynoodlebar.persistence.services.StatusUpdateGemfireNotificationListener;
 
 @Configuration
 @EnableTransactionManagement

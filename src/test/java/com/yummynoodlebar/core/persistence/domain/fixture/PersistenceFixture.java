@@ -17,7 +17,7 @@ public class PersistenceFixture {
 
 	public static MenuItem standardItem() {
 		MenuItem item = new MenuItem();
-		item.setKey(UUID.randomUUID());
+		item.setId(UUID.randomUUID());
 		item.setDescription("Peanutty Noodles, perfect for every occasion.");
 		item.setName("Yummy Noodles");
 		item.setCost(new BigDecimal("12.99"));
@@ -29,7 +29,7 @@ public class PersistenceFixture {
 
 	public static MenuItem eggFriedRice() {
 		MenuItem item = new MenuItem();
-		item.setKey(UUID.randomUUID());
+		item.setId(UUID.randomUUID());
 		item.setDescription("Rice, Egg Fried");
 		item.setName("Yummy Rice");
 		item.setCost(new BigDecimal("12.99"));

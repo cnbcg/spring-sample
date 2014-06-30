@@ -15,7 +15,7 @@ import com.yummynoodlebar.events.menu.MenuItemDetails;
 public class MenuItem {
 
 	@Id
-	private UUID key;
+	private UUID id;
 
 	@Field("itemName")
 	@Indexed
@@ -45,12 +45,12 @@ public class MenuItem {
 		this.ingredients = ingredients;
 	}
 
-	public UUID getKey() {
-		return key;
+	public UUID getId() {
+		return id;
 	}
 
-	public void setKey(UUID key) {
-		this.key = key;
+	public void setId(UUID id) {
+		this.id = id;
 	}
 
 	public String getName() {
@@ -78,14 +78,14 @@ public class MenuItem {
 	}
 
 	public MenuItemDetails toStatusDetails() {
-		return new MenuItemDetails(key, name, cost, minutesToPrepare);
+		return new MenuItemDetails(id, name, cost, minutesToPrepare);
 	}
 
 	public static MenuItem fromStatusDetails(MenuItemDetails orderStatusDetails) {
 		MenuItem item = new MenuItem();
 
 		item.cost = orderStatusDetails.getCost();
-		item.key = orderStatusDetails.getId();
+		item.id = orderStatusDetails.getId();
 		item.minutesToPrepare = orderStatusDetails.getMinutesToPrepare();
 		item.name = orderStatusDetails.getName();
 

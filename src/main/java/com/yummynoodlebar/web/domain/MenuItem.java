@@ -1,9 +1,13 @@
-package com.yummynoodlebar.events.menu;
+package com.yummynoodlebar.web.domain;
 
 import java.math.BigDecimal;
 import java.util.UUID;
 
-public class MenuItemDetails {
+import org.springframework.beans.BeanUtils;
+
+import com.yummynoodlebar.events.menu.MenuItemDetails;
+
+public class MenuItem {
 
 	private UUID id;
 	private String name;
@@ -11,13 +15,6 @@ public class MenuItemDetails {
 	private BigDecimal cost;
 
 	private int minutesToPrepare;
-
-	public MenuItemDetails(UUID id, String name, BigDecimal cost, int minutesToPrepare) {
-		this.id = id;
-		this.name = name;
-		this.cost = cost;
-		this.minutesToPrepare = minutesToPrepare;
-	}
 
 	public UUID getId() {
 		return id;
@@ -50,4 +47,11 @@ public class MenuItemDetails {
 	public void setMinutesToPrepare(int minutesToPrepare) {
 		this.minutesToPrepare = minutesToPrepare;
 	}
+
+	public static MenuItem fromMenuDetails(MenuItemDetails menuItemDetails) {
+		MenuItem menuItem = new MenuItem();
+		BeanUtils.copyProperties(menuItemDetails, menuItem);
+		return menuItem;
+	}
+
 }

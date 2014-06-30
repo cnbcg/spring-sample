@@ -5,13 +5,13 @@ import java.util.UUID;
 import com.yummynoodlebar.events.RequestReadEvent;
 
 public class RequestMenuItemDetailsEvent extends RequestReadEvent {
-	private UUID key;
+	private UUID id;
 
-	public RequestMenuItemDetailsEvent(UUID key) {
-		this.key = key;
+	public RequestMenuItemDetailsEvent(UUID id) {
+		this.id = id;
 	}
 
-	public UUID getKey() {
-		return key;
+	public UUID getId() {
+		return id;
 	}
 }

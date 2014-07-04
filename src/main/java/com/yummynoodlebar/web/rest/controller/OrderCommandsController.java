@@ -1,4 +1,4 @@
-package com.yummynoodlebar.rest.controller;
+package com.yummynoodlebar.web.rest.controller;
 
 import java.util.UUID;
 
@@ -20,7 +20,7 @@ import com.yummynoodlebar.events.orders.CreateOrderEvent;
 import com.yummynoodlebar.events.orders.DeleteOrderEvent;
 import com.yummynoodlebar.events.orders.OrderCreatedEvent;
 import com.yummynoodlebar.events.orders.OrderDeletedEvent;
-import com.yummynoodlebar.rest.domain.Order;
+import com.yummynoodlebar.web.rest.domain.Order;
 
 @Controller
 @RequestMapping("/aggregators/orders")

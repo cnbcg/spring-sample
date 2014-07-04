@@ -8,13 +8,20 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.UUID;
 
+import com.yummynoodlebar.events.orders.OrderDetails;
 import com.yummynoodlebar.persistence.domain.Ingredient;
 import com.yummynoodlebar.persistence.domain.MenuItem;
 import com.yummynoodlebar.persistence.domain.Order;
 import com.yummynoodlebar.persistence.domain.OrderStatus;
 
 public class PersistenceFixture {
-
+	
+	public static final String ORDER_NAME = "My Order";
+	public static final UUID MENU_ID_YUMMY1 = UUID.randomUUID();
+	public static final UUID MENU_ID_YUMMY3 = UUID.randomUUID();
+	public static final UUID MENU_ID_YUMMY5 = UUID.randomUUID();
+	public static final UUID MENU_ID_YUMMY16 = UUID.randomUUID();
+	
 	public static MenuItem standardItem() {
 		MenuItem item = new MenuItem();
 		item.setId(UUID.randomUUID());
@@ -41,45 +48,43 @@ public class PersistenceFixture {
 
 	public static Order standardOrder() {
 
-		Order order = new Order();
-		order.setDateTimeOfSubmission(new Date());
-		order.setKey(UUID.randomUUID());
+		OrderDetails orderDetails = new OrderDetails();
+		orderDetails.setDateTimeOfSubmission(new Date());
 
-		Map<String, Integer> items = new HashMap<String, Integer>();
+		Map<UUID, Integer> items = new HashMap<UUID, Integer>();
 
-		items.put("yummy1", 15);
-		items.put("yummy3", 12);
-		items.put("yummy5", 7);
+		items.put(MENU_ID_YUMMY1, 15);
+		items.put(MENU_ID_YUMMY3, 12);
+		items.put(MENU_ID_YUMMY5, 7);
 
-		order.setOrderItems(items);
+		orderDetails.setOrderItems(items);
 
-		return order;
+		return Order.fromOrderDetails(orderDetails);
 	}
 
 	public static Order yummy16Order() {
 
-		Order order = new Order();
-		order.setDateTimeOfSubmission(new Date());
-		order.setKey(UUID.randomUUID());
+		OrderDetails orderDetails = new OrderDetails();
+		orderDetails.setDateTimeOfSubmission(new Date());
 
-		Map<String, Integer> items = new HashMap<String, Integer>();
+		Map<UUID, Integer> items = new HashMap<UUID, Integer>();
 
-		items.put("yummy16", 22);
+		items.put(MENU_ID_YUMMY16, 22);
 
-		order.setOrderItems(items);
+		orderDetails.setOrderItems(items);
 
-		return order;
+		return Order.fromOrderDetails(orderDetails);
 	}
 
 	public static OrderStatus orderReceived(UUID orderId) {
-		return new OrderStatus(orderId, UUID.randomUUID(), new Date(), "Order Received");
+		return new OrderStatus(orderId, UUID.randomUUID(), ORDER_NAME, new Date(), "Order Received");
 	}
 
 	public static OrderStatus startedCooking(UUID orderId) {
-		return new OrderStatus(orderId, UUID.randomUUID(), new Date(), "Started Cooking");
+		return new OrderStatus(orderId, UUID.randomUUID(), ORDER_NAME, new Date(), "Started Cooking");
 	}
 
 	public static OrderStatus finishedCooking(UUID orderId) {
-		return new OrderStatus(orderId, UUID.randomUUID(), new Date(), "Finished Cooking");
+		return new OrderStatus(orderId, UUID.randomUUID(), ORDER_NAME, new Date(), "Finished Cooking");
 	}
 }

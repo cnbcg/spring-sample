@@ -1,7 +1,8 @@
-package com.yummynoodlebar.rest.controller;
+package com.yummynoodlebar.web.rest.controller;
 
 import com.yummynoodlebar.core.services.OrderService;
 import com.yummynoodlebar.events.orders.RequestOrderDetailsEvent;
+import com.yummynoodlebar.web.rest.controller.OrderQueriesController;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -20,8 +21,8 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 import static org.springframework.test.web.servlet.setup.MockMvcBuilders.standaloneSetup;
-import static com.yummynoodlebar.rest.controller.fixture.RestDataFixture.*;
-import static com.yummynoodlebar.rest.controller.fixture.RestEventFixtures.*;
+import static com.yummynoodlebar.web.rest.controller.fixture.RestDataFixture.*;
+import static com.yummynoodlebar.web.rest.controller.fixture.RestEventFixtures.*;
 
 public class ViewOrderIntegrationTest {
 
@@ -83,7 +84,7 @@ public class ViewOrderIntegrationTest {
 				.perform(
 						get("/aggregators/orders/{id}", key.toString()).accept(
 								MediaType.APPLICATION_JSON))
-				.andExpect(jsonPath("$.items['" + YUMMY_ITEM + "']").value(12))
+				.andExpect(jsonPath("$.items['" + YUMMY_ITEM_ID + "']").value(12))
 				.andExpect(jsonPath("$.key").value(key.toString()));
 	}
 }

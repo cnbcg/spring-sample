@@ -1,8 +1,9 @@
-package com.yummynoodlebar.rest.controller;
+package com.yummynoodlebar.web.rest.controller;
 
 import com.yummynoodlebar.core.services.OrderService;
 import com.yummynoodlebar.events.orders.RequestAllOrdersEvent;
-import com.yummynoodlebar.rest.controller.fixture.RestDataFixture;
+import com.yummynoodlebar.web.rest.controller.OrderQueriesController;
+import com.yummynoodlebar.web.rest.controller.fixture.RestDataFixture;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -12,7 +13,7 @@ import org.mockito.MockitoAnnotations;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
-import static com.yummynoodlebar.rest.controller.fixture.RestDataFixture.allOrders;
+import static com.yummynoodlebar.web.rest.controller.fixture.RestDataFixture.allOrders;
 import static org.mockito.Mockito.any;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -45,14 +46,9 @@ public class GetAllOrdersIntegrationTest {
 	public void thatGetOrdersRendersAsJson() throws Exception {
 
 		this.mockMvc
-				.perform(
-						get("/aggregators/orders").accept(
-								MediaType.APPLICATION_JSON))
-				.andDo(print())
-				.andExpect(status().isOk())
-				.andExpect(
-						jsonPath(
-								"$[0].items['" + RestDataFixture.YUMMY_ITEM
-										+ "']").value(12));
+				.perform(get("/aggregators/orders").accept(MediaType.APPLICATION_JSON))
+						.andDo(print())
+						.andExpect(status().isOk())
+						.andExpect(jsonPath("$[0].items['" + RestDataFixture.YUMMY_ITEM_ID + "']").value(12));
 	}
 }

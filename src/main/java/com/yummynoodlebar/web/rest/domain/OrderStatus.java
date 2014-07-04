@@ -1,4 +1,4 @@
-package com.yummynoodlebar.rest.domain;
+package com.yummynoodlebar.web.rest.domain;
 
 import java.util.Date;
 import java.util.UUID;
@@ -15,17 +15,25 @@ public class OrderStatus {
 	private UUID orderId;
 
 	@XmlElement
+	private UUID id;
+
+	@XmlElement
+	private String name;
+
+	@XmlElement
 	private Date statusDate;
 
 	@XmlElement
 	private String status;
 
-	public static OrderStatus fromOrderStatusDetails(UUID key, OrderStatusDetails orderDetails) {
+	public static OrderStatus fromOrderStatusDetails(OrderStatusDetails orderDetails) {
 		OrderStatus status = new OrderStatus();
 
-		status.orderId = key;
-		status.status = orderDetails.getStatus();
+		status.orderId = orderDetails.getOrderId();
+		status.id = orderDetails.getId();
+		status.name = orderDetails.getName();
 		status.statusDate = orderDetails.getStatusDate();
+		status.status = orderDetails.getStatus();
 
 		return status;
 	}
@@ -34,11 +42,20 @@ public class OrderStatus {
 		return orderId;
 	}
 
+	public UUID getId() {
+		return id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
 	public Date getStatusDate() {
 		return statusDate;
 	}
-
+	
 	public String getStatus() {
 		return status;
 	}
+
 }

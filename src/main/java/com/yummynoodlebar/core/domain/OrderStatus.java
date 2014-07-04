@@ -9,12 +9,14 @@ public class OrderStatus {
 
 	private UUID orderId;
 	private UUID id;
+	private String name;
 	private Date statusDate;
 	private String status;
 
-	public OrderStatus(UUID orderId, UUID id, final Date date, final String status) {
+	public OrderStatus(UUID orderId, UUID id, String name, final Date date, final String status) {
 		this.orderId = orderId;
 		this.id = id;
+		this.name = name;
 		this.status = status;
 		this.statusDate = date;
 	}
@@ -36,11 +38,11 @@ public class OrderStatus {
 	}
 
 	public OrderStatusDetails toStatusDetails() {
-		return new OrderStatusDetails(orderId, id, statusDate, status);
+		return new OrderStatusDetails(orderId, id, name, statusDate, status);
 	}
 
 	public static OrderStatus fromStatusDetails(OrderStatusDetails orderStatusDetails) {
-		return new OrderStatus(orderStatusDetails.getOrderId(), orderStatusDetails.getId(), orderStatusDetails.getStatusDate(),
+		return new OrderStatus(orderStatusDetails.getOrderId(), orderStatusDetails.getId(), orderStatusDetails.getName(), orderStatusDetails.getStatusDate(),
 				orderStatusDetails.getStatus());
 	}
 }

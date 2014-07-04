@@ -1,4 +1,4 @@
-package com.yummynoodlebar.rest.domain;
+package com.yummynoodlebar.web.rest.domain;
 
 import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
 
@@ -13,7 +13,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 import org.springframework.hateoas.ResourceSupport;
 
 import com.yummynoodlebar.events.orders.OrderDetails;
-import com.yummynoodlebar.rest.controller.OrderQueriesController;
+import com.yummynoodlebar.web.rest.controller.OrderQueriesController;
 
 //TODOCUMENT This is added so that we can do jaxb serialisation.
 //this type of annotation is fine here, as this
@@ -26,7 +26,7 @@ public class Order extends ResourceSupport implements Serializable {
 
 	private Date dateTimeOfSubmission;
 
-	private Map<String, Integer> items;
+	private Map<UUID, Integer> items;
 
 	private UUID key;
 
@@ -38,11 +38,11 @@ public class Order extends ResourceSupport implements Serializable {
 		return key;
 	}
 
-	public Map<String, Integer> getItems() {
+	public Map<UUID, Integer> getItems() {
 		return items;
 	}
 
-	public void setItems(Map<String, Integer> items) {
+	public void setItems(Map<UUID, Integer> items) {
 		if (items == null) {
 			this.items = Collections.emptyMap();
 		} else {

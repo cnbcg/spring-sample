@@ -1,20 +1,21 @@
-package com.yummynoodlebar.rest.controller.fixture;
+package com.yummynoodlebar.web.rest.controller.fixture;
 
-import com.yummynoodlebar.events.orders.*;
-
-import static com.yummynoodlebar.rest.controller.fixture.RestDataFixture.*;
+import static com.yummynoodlebar.web.rest.controller.fixture.RestDataFixture.customKeyOrderDetails;
+import static com.yummynoodlebar.web.rest.controller.fixture.RestDataFixture.standardOrderDetails;
 
 import java.util.Date;
 import java.util.UUID;
+
+import com.yummynoodlebar.events.orders.OrderCreatedEvent;
+import com.yummynoodlebar.events.orders.OrderDeletedEvent;
+import com.yummynoodlebar.events.orders.OrderDetailsEvent;
+import com.yummynoodlebar.events.orders.OrderStatusDetails;
+import com.yummynoodlebar.events.orders.OrderStatusEvent;
 
 public class RestEventFixtures {
 
 	public static OrderStatusEvent orderStatusNotFound(UUID key) {
 		return OrderStatusEvent.notFound(key);
-	}
-
-	public static OrderStatusEvent orderStatus(UUID key, String status) {
-		return new OrderStatusEvent(key, new OrderStatusDetails(key, UUID.randomUUID(), new Date(), status));
 	}
 
 	public static OrderDetailsEvent orderDetailsNotFound(UUID key) {

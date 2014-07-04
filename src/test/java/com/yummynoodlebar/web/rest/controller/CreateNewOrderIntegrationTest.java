@@ -1,7 +1,8 @@
-package com.yummynoodlebar.rest.controller;
+package com.yummynoodlebar.web.rest.controller;
 
 import com.yummynoodlebar.core.services.OrderService;
 import com.yummynoodlebar.events.orders.CreateOrderEvent;
+import com.yummynoodlebar.web.rest.controller.OrderCommandsController;
 
 import org.hamcrest.Matchers;
 import org.junit.Before;
@@ -20,8 +21,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.setup.MockMvcBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.*;
 import static org.mockito.Mockito.*;
-import static com.yummynoodlebar.rest.controller.fixture.RestDataFixture.*;
-import static com.yummynoodlebar.rest.controller.fixture.RestEventFixtures.*;
+import static com.yummynoodlebar.web.rest.controller.fixture.RestDataFixture.*;
+import static com.yummynoodlebar.web.rest.controller.fixture.RestEventFixtures.*;
 
 public class CreateNewOrderIntegrationTest {
 
@@ -68,7 +69,7 @@ public class CreateNewOrderIntegrationTest {
 								.content(standardOrderJSON())
 								.contentType(MediaType.APPLICATION_JSON)
 								.accept(MediaType.APPLICATION_JSON))
-				.andExpect(jsonPath("$.items['" + YUMMY_ITEM + "']").value(12))
+				.andExpect(jsonPath("$.items['" + YUMMY_ITEM_ID + "']").value(12))
 				.andExpect(
 						jsonPath("$.key").value(
 								"f3512d26-72f6-4290-9265-63ad69eccc13"));

@@ -12,6 +12,7 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
 import static org.mockito.Mockito.when;
 
+import java.util.Date;
 import java.util.UUID;
 
 import org.junit.Before;
@@ -22,6 +23,7 @@ import org.mockito.MockitoAnnotations;
 import com.yummynoodlebar.events.orders.CreateOrderEvent;
 import com.yummynoodlebar.events.orders.DeleteOrderEvent;
 import com.yummynoodlebar.events.orders.OrderDeletedEvent;
+import com.yummynoodlebar.events.orders.OrderDetails;
 import com.yummynoodlebar.persistence.domain.Order;
 import com.yummynoodlebar.persistence.domain.OrderStatus;
 import com.yummynoodlebar.persistence.repository.OrderStatusRepository;
@@ -99,11 +101,11 @@ public class OrderEventHandlerUnitTest {
 
 	@Test
 	public void removeAnOrderFromTheSystemFailsIfNotPermitted() {
-		UUID key = UUID.randomUUID();
 
-		Order order = new Order();
-		order.setCanBeDeleted(Boolean.FALSE);
-		order.setKey(key);
+		OrderDetails orderDetails = new OrderDetails();
+		orderDetails.setCanBeDeleted(Boolean.FALSE);
+		Order order = Order.fromOrderDetails(orderDetails);
+		UUID key = order.getKey();
 
 		when(mockOrdersRepository.findOne(key)).thenReturn(order);
 
@@ -120,9 +122,11 @@ public class OrderEventHandlerUnitTest {
 
 	@Test
 	public void removeAnOrderFromTheSystemWorksIfExists() {
-		UUID key = UUID.randomUUID();
-		Order order = new Order();
-		order.setKey(key);
+
+		OrderDetails orderDetails = new OrderDetails();
+		Order order = Order.fromOrderDetails(orderDetails);
+		order.setCanBeDeleted(Boolean.TRUE);
+		UUID key = order.getKey();
 
 		when(mockOrdersRepository.findOne(any(UUID.class))).thenReturn(order);
 

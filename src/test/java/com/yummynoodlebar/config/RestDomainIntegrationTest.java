@@ -1,6 +1,6 @@
 package com.yummynoodlebar.config;
 
-import static com.yummynoodlebar.rest.controller.fixture.RestDataFixture.standardOrderJSON;
+import static com.yummynoodlebar.web.rest.controller.fixture.RestDataFixture.standardOrderJSON;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
@@ -23,7 +23,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.context.WebApplicationContext;
 
 import com.yummynoodlebar.config.persistence.PersistenceConfig;
-import com.yummynoodlebar.rest.controller.fixture.RestDataFixture;
+import com.yummynoodlebar.web.rest.controller.fixture.RestDataFixture;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ActiveProfiles("dev")
@@ -51,7 +51,7 @@ public class RestDomainIntegrationTest {
 								.accept(MediaType.APPLICATION_JSON)).andDo(print()).andExpect(status().isCreated());
 
 		this.mockMvc.perform(get("/aggregators/orders").accept(MediaType.APPLICATION_JSON)).andDo(print()).andExpect(status().isOk())
-				.andExpect(jsonPath("$[0].items['" + RestDataFixture.YUMMY_ITEM + "']").value(12));
+				.andExpect(jsonPath("$[0].items['" + RestDataFixture.YUMMY_ITEM_ID + "']").value(12));
 
 	}
 }

@@ -1,4 +1,4 @@
-package com.yummynoodlebar.rest.functional;
+package com.yummynoodlebar.web.rest.functional;
 
 import static junit.framework.TestCase.assertEquals;
 import static junit.framework.TestCase.assertTrue;
@@ -16,8 +16,8 @@ import org.springframework.security.crypto.codec.Base64;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 
-import com.yummynoodlebar.rest.controller.fixture.RestDataFixture;
-import com.yummynoodlebar.rest.domain.Order;
+import com.yummynoodlebar.web.rest.controller.fixture.RestDataFixture;
+import com.yummynoodlebar.web.rest.domain.Order;
 
 public class OrderTests {
 

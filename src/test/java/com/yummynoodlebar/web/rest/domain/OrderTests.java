@@ -1,4 +1,4 @@
-package com.yummynoodlebar.rest.domain;
+package com.yummynoodlebar.web.rest.domain;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -10,7 +10,8 @@ import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
 import com.yummynoodlebar.events.orders.OrderDetails;
-import com.yummynoodlebar.rest.controller.fixture.RestDataFixture;
+import com.yummynoodlebar.web.rest.controller.fixture.RestDataFixture;
+import com.yummynoodlebar.web.rest.domain.Order;
 
 public class OrderTests {
 
@@ -29,8 +30,8 @@ public class OrderTests {
 		assertEquals(order.getKey(), details.getKey());
 		assertEquals(order.getDateTimeOfSubmission(), details.getDateTimeOfSubmission());
 		assertEquals(details.getOrderItems().size(), details.getOrderItems().size());
-		assertTrue(details.getOrderItems().containsKey(RestDataFixture.YUMMY_ITEM));
-		assertEquals(details.getOrderItems().get(RestDataFixture.YUMMY_ITEM), order.getItems().get(RestDataFixture.YUMMY_ITEM));
+		assertTrue(details.getOrderItems().containsKey(RestDataFixture.YUMMY_ITEM_ID));
+		assertEquals(details.getOrderItems().get(RestDataFixture.YUMMY_ITEM_ID), order.getItems().get(RestDataFixture.YUMMY_ITEM_ID));
 	}
 
 	@Test
@@ -42,7 +43,7 @@ public class OrderTests {
 		assertEquals(order.getKey(), details.getKey());
 		assertEquals(order.getDateTimeOfSubmission(), details.getDateTimeOfSubmission());
 		assertEquals(order.getItems().size(), details.getOrderItems().size());
-		assertTrue(order.getItems().containsKey(RestDataFixture.YUMMY_ITEM));
-		assertEquals(details.getOrderItems().get(RestDataFixture.YUMMY_ITEM), order.getItems().get(RestDataFixture.YUMMY_ITEM));
+		assertTrue(order.getItems().containsKey(RestDataFixture.YUMMY_ITEM_ID));
+		assertEquals(details.getOrderItems().get(RestDataFixture.YUMMY_ITEM_ID), order.getItems().get(RestDataFixture.YUMMY_ITEM_ID));
 	}
 }

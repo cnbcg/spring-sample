@@ -14,7 +14,7 @@ import com.yummynoodlebar.events.orders.OrderDetails;
 public class Order {
 
 	private final Date dateTimeOfSubmission;
-	private Map<String, Integer> orderItems;
+	private Map<UUID, Integer> orderItems;
 	private final UUID key;
 	private Customer customer;
 	private boolean canBeDeleted = Boolean.TRUE;
@@ -45,7 +45,7 @@ public class Order {
 		return key;
 	}
 
-	public void setOrderItems(Map<String, Integer> orderItems) {
+	public void setOrderItems(Map<UUID, Integer> orderItems) {
 		if (orderItems == null) {
 			this.orderItems = Collections.emptyMap();
 		} else {
@@ -53,8 +53,16 @@ public class Order {
 		}
 	}
 
-	public Map<String, Integer> getOrderItems() {
+	public Map<UUID, Integer> getOrderItems() {
 		return orderItems;
+	}
+
+	public Customer getCustomer() {
+		return customer;
+	}
+
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
 	}
 
 	public boolean isCanBeDeleted() {

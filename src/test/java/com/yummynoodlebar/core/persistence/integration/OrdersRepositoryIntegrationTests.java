@@ -14,6 +14,7 @@ import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.yummynoodlebar.config.persistence.JPAConfiguration;
+import com.yummynoodlebar.core.persistence.domain.fixture.PersistenceFixture;
 import com.yummynoodlebar.persistence.domain.Order;
 import com.yummynoodlebar.persistence.repository.OrdersRepository;
 
@@ -38,7 +39,7 @@ public class OrdersRepositoryIntegrationTests {
 
 		assertNotNull(retrievedOrder);
 		assertEquals(order.getKey(), retrievedOrder.getKey());
-		assertEquals(order.getOrderItems().get("yummy1"), retrievedOrder.getOrderItems().get("yummy1"));
+		assertEquals(order.getOrderItems().get(PersistenceFixture.MENU_ID_YUMMY1), retrievedOrder.getOrderItems().get(PersistenceFixture.MENU_ID_YUMMY1));
 	}
 
 }

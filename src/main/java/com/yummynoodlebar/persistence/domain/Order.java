@@ -22,6 +22,10 @@ import com.yummynoodlebar.events.orders.OrderDetails;
 @Entity(name = "NOODLE_ORDERS")
 public class Order {
 
+	@Id
+	@Column(name = "ORDER_KEY")
+	private UUID key;
+	
 	@Column(name = "SUBMISSION_DATETIME")
 	private Date dateTimeOfSubmission;
 
@@ -29,19 +33,24 @@ public class Order {
 	@JoinTable(name = "ORDER_ORDER_ITEMS", joinColumns = @JoinColumn(name = "ID"))
 	@MapKeyColumn(name = "MENU_ID")
 	@Column(name = "VALUE")
-	private Map<String, Integer> orderItems;
+	private Map<UUID, Integer> orderItems;
 
 	private boolean canBeDeleted = Boolean.TRUE;
 
 	@Transient
 	private OrderStatus orderStatus;
-
-	@Id
-	@Column(name = "ORDER_KEY")
-	private UUID key;
-
-	public void setKey(UUID key) {
-		this.key = key;
+	
+	private String name;
+	private String address1;
+	private String postcode;
+	
+	public Order() {
+		// required for jpa
+	}
+	
+	public Order(final Date dateTimeOfSubmission) {
+		this.key = UUID.randomUUID();
+		this.dateTimeOfSubmission = dateTimeOfSubmission;
 	}
 
 	public void setDateTimeOfSubmission(Date dateTimeOfSubmission) {
@@ -64,7 +73,7 @@ public class Order {
 		return key;
 	}
 
-	public void setOrderItems(Map<String, Integer> orderItems) {
+	public void setOrderItems(Map<UUID, Integer> orderItems) {
 		if (orderItems == null) {
 			this.orderItems = Collections.emptyMap();
 		} else {
@@ -72,7 +81,7 @@ public class Order {
 		}
 	}
 
-	public Map<String, Integer> getOrderItems() {
+	public Map<UUID, Integer> getOrderItems() {
 		return orderItems;
 	}
 
@@ -84,6 +93,30 @@ public class Order {
 		this.canBeDeleted = canBeDeleted;
 		return this;
 	}
+	
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getAddress1() {
+		return address1;
+	}
+
+	public void setAddress1(String address1) {
+		this.address1 = address1;
+	}
+
+	public String getPostcode() {
+		return postcode;
+	}
+
+	public void setPostcode(String postcode) {
+		this.postcode = postcode;
+	}
 
 	public OrderDetails toOrderDetails() {
 		OrderDetails details = new OrderDetails();
@@ -94,7 +127,7 @@ public class Order {
 	}
 
 	public static Order fromOrderDetails(OrderDetails orderDetails) {
-		Order order = new Order();
+		Order order = new Order(orderDetails.getDateTimeOfSubmission());
 
 		BeanUtils.copyProperties(orderDetails, order);
 

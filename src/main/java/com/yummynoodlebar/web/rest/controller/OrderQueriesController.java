@@ -1,4 +1,4 @@
-package com.yummynoodlebar.rest.controller;
+package com.yummynoodlebar.web.rest.controller;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,7 +21,7 @@ import com.yummynoodlebar.events.orders.OrderDetails;
 import com.yummynoodlebar.events.orders.OrderDetailsEvent;
 import com.yummynoodlebar.events.orders.RequestAllOrdersEvent;
 import com.yummynoodlebar.events.orders.RequestOrderDetailsEvent;
-import com.yummynoodlebar.rest.domain.Order;
+import com.yummynoodlebar.web.rest.domain.Order;
 
 @Controller
 @RequestMapping("/aggregators/orders")

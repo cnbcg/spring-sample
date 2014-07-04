@@ -19,6 +19,7 @@ import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.yummynoodlebar.config.persistence.JPAConfiguration;
+import com.yummynoodlebar.core.persistence.domain.fixture.PersistenceFixture;
 import com.yummynoodlebar.persistence.domain.Order;
 import com.yummynoodlebar.persistence.repository.OrdersRepository;
 
@@ -43,17 +44,17 @@ public class OrdersRepositoryFindOrdersContainingTests {
 		ordersRepository.save(yummy16Order());
 		ordersRepository.save(yummy16Order());
 
-		List<Order> retrievedOrders = ordersRepository.findOrdersContaining("yummy16");
+		List<Order> retrievedOrders = ordersRepository.findOrdersContaining(PersistenceFixture.MENU_ID_YUMMY16);
 
 		assertNotNull(retrievedOrders);
 		assertEquals(2, retrievedOrders.size());
-		assertEquals(22, (int) retrievedOrders.get(0).getOrderItems().get("yummy16"));
+		assertEquals(22, (int) retrievedOrders.get(0).getOrderItems().get(PersistenceFixture.MENU_ID_YUMMY16));
 
-		retrievedOrders = ordersRepository.findOrdersContaining("yummy3");
+		retrievedOrders = ordersRepository.findOrdersContaining(PersistenceFixture.MENU_ID_YUMMY3);
 
 		assertNotNull(retrievedOrders);
 		assertEquals(2, retrievedOrders.size());
-		assertEquals(12, (int) retrievedOrders.get(0).getOrderItems().get("yummy3"));
+		assertEquals(12, (int) retrievedOrders.get(0).getOrderItems().get(PersistenceFixture.MENU_ID_YUMMY3));
 	}
 
 }

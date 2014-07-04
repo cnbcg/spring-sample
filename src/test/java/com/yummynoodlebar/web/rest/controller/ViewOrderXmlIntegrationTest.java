@@ -1,6 +1,6 @@
-package com.yummynoodlebar.rest.controller;
+package com.yummynoodlebar.web.rest.controller;
 
-import static com.yummynoodlebar.rest.controller.fixture.RestEventFixtures.orderDetailsEvent;
+import static com.yummynoodlebar.web.rest.controller.fixture.RestEventFixtures.orderDetailsEvent;
 import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -24,6 +24,7 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import com.yummynoodlebar.core.services.OrderService;
 import com.yummynoodlebar.events.orders.RequestOrderDetailsEvent;
+import com.yummynoodlebar.web.rest.controller.OrderQueriesController;
 
 public class ViewOrderXmlIntegrationTest {
 

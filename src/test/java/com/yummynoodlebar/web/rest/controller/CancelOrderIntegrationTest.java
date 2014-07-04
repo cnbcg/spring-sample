@@ -1,7 +1,8 @@
-package com.yummynoodlebar.rest.controller;
+package com.yummynoodlebar.web.rest.controller;
 
 import com.yummynoodlebar.core.services.OrderService;
 import com.yummynoodlebar.events.orders.DeleteOrderEvent;
+import com.yummynoodlebar.web.rest.controller.OrderCommandsController;
 
 import org.hamcrest.Matchers;
 import org.junit.Before;
@@ -15,7 +16,7 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import java.util.UUID;
 
-import static com.yummynoodlebar.rest.controller.fixture.RestEventFixtures.*;
+import static com.yummynoodlebar.web.rest.controller.fixture.RestEventFixtures.*;
 import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;

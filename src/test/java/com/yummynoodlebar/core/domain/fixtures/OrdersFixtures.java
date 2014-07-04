@@ -10,13 +10,14 @@ import java.util.UUID;
 
 public class OrdersFixtures {
 
-	public static final String YUMMY_ITEM = "yummy_core";
+	public static final String ORDER_NAME = "My Order";
+	public static final UUID YUMMY_ITEM = UUID.randomUUID();
 
 	public static Order standardOrder() {
 		Order order = new Order(new Date());
 
 		order.setOrderItems(Collections.singletonMap(YUMMY_ITEM, 12));
-		order.setOrderStatus(new OrderStatus(order.getKey(), UUID.randomUUID(), new Date(), "Order Created"));
+		order.setOrderStatus(new OrderStatus(order.getKey(), UUID.randomUUID(), ORDER_NAME, new Date(), "Order Created"));
 
 		return order;
 	}

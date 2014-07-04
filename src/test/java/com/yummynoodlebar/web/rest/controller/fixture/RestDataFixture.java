@@ -1,7 +1,8 @@
-package com.yummynoodlebar.rest.controller.fixture;
+package com.yummynoodlebar.web.rest.controller.fixture;
 
 import com.yummynoodlebar.events.orders.*;
-import com.yummynoodlebar.rest.domain.Order;
+import com.yummynoodlebar.web.domain.OrderStatus;
+import com.yummynoodlebar.web.rest.domain.Order;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -17,7 +18,7 @@ import java.util.UUID;
  */
 public class RestDataFixture {
 	
-	public static final String YUMMY_ITEM = "yummy1";
+	public static final UUID YUMMY_ITEM_ID = UUID.randomUUID();
 
 	public static AllOrdersEvent allOrders() {
 		List<OrderDetails> orders = new ArrayList<OrderDetails>();
@@ -32,7 +33,7 @@ public class RestDataFixture {
 	public static Order standardOrder() {
 		Order order = new Order();
 
-		order.setItems(Collections.singletonMap(YUMMY_ITEM, 12));
+		order.setItems(Collections.singletonMap(YUMMY_ITEM_ID, 12));
 
 		return order;
 	}
@@ -40,7 +41,7 @@ public class RestDataFixture {
 	public static OrderDetails customKeyOrderDetails(UUID key) {
 		OrderDetails orderdetails = new OrderDetails(key);
 
-		orderdetails.setOrderItems(Collections.singletonMap(YUMMY_ITEM, 12));
+		orderdetails.setOrderItems(Collections.singletonMap(YUMMY_ITEM_ID, 12));
 
 		return orderdetails;
 	}
@@ -50,6 +51,14 @@ public class RestDataFixture {
 	}
 
 	public static String standardOrderJSON() {
-		return "{ \"key\": \"" +UUID.randomUUID() + "\", \"items\": { \"yummy1\": 12, \"yummy15\": 42 } }";
+		return "{ \"key\": \"" +UUID.randomUUID() + "\", \"items\": { \"" + YUMMY_ITEM_ID + "\": 12, \"" +UUID.randomUUID() + "\": 42 } }";
+	}
+
+	public static OrderStatus orderStatus(UUID id, String status){
+		OrderStatus orderStatus = new OrderStatus();
+		orderStatus.setOrderId(id);
+		orderStatus.setId(UUID.randomUUID());
+		orderStatus.setStatus(status);
+		return orderStatus;
 	}
 }

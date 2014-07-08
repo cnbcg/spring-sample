@@ -1,4 +1,4 @@
-package com.yummynoodlebar.core.persistence.integration;
+package com.yummynoodlebar.persistence.integration;
 
 import org.junit.After;
 import org.junit.Before;
@@ -13,8 +13,8 @@ import org.springframework.test.context.support.DirtiesContextTestExecutionListe
 import org.springframework.test.context.transaction.TransactionalTestExecutionListener;
 
 import com.yummynoodlebar.config.persistence.GemfireConfiguration;
-import com.yummynoodlebar.core.persistence.integration.fakecore.CountingOrderStatusService;
-import com.yummynoodlebar.core.persistence.integration.fakecore.FakeCoreConfiguration;
+import com.yummynoodlebar.persistence.integration.fakecore.CountingOrderStatusService;
+import com.yummynoodlebar.persistence.integration.fakecore.FakeCoreConfiguration;
 import com.yummynoodlebar.persistence.repository.OrderStatusRepository;
 
 @RunWith(SpringJUnit4ClassRunner.class)

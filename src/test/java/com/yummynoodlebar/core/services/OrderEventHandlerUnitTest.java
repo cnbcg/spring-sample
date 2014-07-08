@@ -1,7 +1,7 @@
 package com.yummynoodlebar.core.services;
 
-import static com.yummynoodlebar.core.persistence.domain.fixture.PersistenceFixture.orderReceived;
-import static com.yummynoodlebar.core.persistence.domain.fixture.PersistenceFixture.standardOrder;
+import static com.yummynoodlebar.persistence.domain.fixture.PersistenceFixture.orderReceived;
+import static com.yummynoodlebar.persistence.domain.fixture.PersistenceFixture.standardOrder;
 import static junit.framework.TestCase.assertEquals;
 import static junit.framework.TestCase.assertFalse;
 import static junit.framework.TestCase.assertTrue;
@@ -12,7 +12,6 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
 import static org.mockito.Mockito.when;
 
-import java.util.Date;
 import java.util.UUID;
 
 import org.junit.Before;

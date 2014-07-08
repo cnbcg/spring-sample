@@ -12,6 +12,10 @@ import com.yummynoodlebar.persistence.domain.Order;
 
 public interface OrdersRepository extends CrudRepository<Order, UUID> {
 
+	@Override
+	@Cacheable(value = "Order")
+	Order findOne(UUID id);
+
 	@Query(value = "select no.* from NOODLE_ORDERS no where no.ORDER_KEY in (select ID from ORDER_ORDER_ITEMS where MENU_ID = :menuId)", nativeQuery = true)
 	List<Order> findOrdersContaining(@Param("menuId") UUID menuId);
 }

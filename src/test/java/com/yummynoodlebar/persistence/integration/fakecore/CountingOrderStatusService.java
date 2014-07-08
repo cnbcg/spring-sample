@@ -1,4 +1,4 @@
-package com.yummynoodlebar.core.persistence.integration.fakecore;
+package com.yummynoodlebar.persistence.integration.fakecore;
 
 import java.util.concurrent.CountDownLatch;
 

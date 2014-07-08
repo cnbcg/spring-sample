@@ -1,7 +1,7 @@
-package com.yummynoodlebar.core.persistence.integration;
+package com.yummynoodlebar.persistence.integration;
 
-import static com.yummynoodlebar.core.persistence.domain.fixture.JPAAssertions.assertTableExists;
-import static com.yummynoodlebar.core.persistence.domain.fixture.JPAAssertions.assertTableHasColumn;
+import static com.yummynoodlebar.persistence.domain.fixture.JPAAssertions.assertTableExists;
+import static com.yummynoodlebar.persistence.domain.fixture.JPAAssertions.assertTableHasColumn;
 
 import javax.annotation.Resource;
 import javax.persistence.EntityManager;

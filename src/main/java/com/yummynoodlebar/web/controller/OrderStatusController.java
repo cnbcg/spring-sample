@@ -12,10 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.yummynoodlebar.core.services.OrderService;
-import com.yummynoodlebar.events.orders.AllOrdersEvent;
 import com.yummynoodlebar.events.orders.OrderDetailsEvent;
 import com.yummynoodlebar.events.orders.OrderStatusEvent;
-import com.yummynoodlebar.events.orders.RequestAllOrdersEvent;
 import com.yummynoodlebar.events.orders.RequestOrderDetailsEvent;
 import com.yummynoodlebar.events.orders.RequestOrderStatusEvent;
 import com.yummynoodlebar.web.domain.OrderStatus;
@@ -39,9 +37,7 @@ public class OrderStatusController {
 	public OrderStatus getOrderStatus(@PathVariable("orderId") String orderId) {
 		OrderDetailsEvent orderDetailsEvent = orderService.requestOrderDetails(new RequestOrderDetailsEvent(UUID.fromString(orderId)));
 		OrderStatusEvent orderStatusEvent = orderService.requestOrderStatus(new RequestOrderStatusEvent(UUID.fromString(orderId)));
-		
-		AllOrdersEvent s = orderService.requestAllOrders(new RequestAllOrdersEvent());
-		
+
 		if(orderDetailsEvent.isEntityFound()) {
 			OrderStatus status = new OrderStatus();
 			status.setName(orderDetailsEvent.getOrderDetails().getName());

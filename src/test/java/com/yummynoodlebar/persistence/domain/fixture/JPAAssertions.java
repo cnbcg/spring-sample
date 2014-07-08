@@ -1,4 +1,4 @@
-package com.yummynoodlebar.core.persistence.domain.fixture;
+package com.yummynoodlebar.persistence.domain.fixture;
 
 import static junit.framework.TestCase.fail;
 

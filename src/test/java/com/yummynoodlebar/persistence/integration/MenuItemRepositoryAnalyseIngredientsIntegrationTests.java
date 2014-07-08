@@ -1,7 +1,7 @@
-package com.yummynoodlebar.core.persistence.integration;
+package com.yummynoodlebar.persistence.integration;
 
-import static com.yummynoodlebar.core.persistence.domain.fixture.PersistenceFixture.eggFriedRice;
-import static com.yummynoodlebar.core.persistence.domain.fixture.PersistenceFixture.standardItem;
+import static com.yummynoodlebar.persistence.domain.fixture.PersistenceFixture.eggFriedRice;
+import static com.yummynoodlebar.persistence.domain.fixture.PersistenceFixture.standardItem;
 import static junit.framework.TestCase.assertEquals;
 
 import java.util.Map;

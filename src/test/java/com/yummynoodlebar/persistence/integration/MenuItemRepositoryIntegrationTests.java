@@ -1,10 +1,7 @@
-package com.yummynoodlebar.core.persistence.integration;
+package com.yummynoodlebar.persistence.integration;
 
-import static com.yummynoodlebar.core.persistence.domain.fixture.PersistenceFixture.eggFriedRice;
-import static com.yummynoodlebar.core.persistence.domain.fixture.PersistenceFixture.standardItem;
+import static com.yummynoodlebar.persistence.domain.fixture.PersistenceFixture.standardItem;
 import static junit.framework.TestCase.assertEquals;
-
-import java.util.List;
 
 import org.junit.After;
 import org.junit.Before;
@@ -16,12 +13,11 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.yummynoodlebar.config.persistence.MongoConfiguration;
-import com.yummynoodlebar.persistence.domain.MenuItem;
 import com.yummynoodlebar.persistence.repository.MenuItemRepository;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = { MongoConfiguration.class })
-public class MenuItemRepositoryFindByIngredientsIntegrationTests {
+public class MenuItemRepositoryIntegrationTests {
 
 	@Autowired
 	MenuItemRepository menuItemRepository;
@@ -42,12 +38,11 @@ public class MenuItemRepositoryFindByIngredientsIntegrationTests {
 	@Test
 	public void thatItemIsInsertedIntoRepoWorks() throws Exception {
 
-		menuItemRepository.save(standardItem());
-		menuItemRepository.save(standardItem());
-		menuItemRepository.save(eggFriedRice());
+		assertEquals(0, mongo.getCollection("menu").count());
 
-		List<MenuItem> peanutItems = menuItemRepository.findByIngredientsNameIn("Peanuts");
+		menuItemRepository.save(standardItem());
 
-		assertEquals(2, peanutItems.size());
+		assertEquals(1, mongo.getCollection("menu").count());
 	}
+
 }

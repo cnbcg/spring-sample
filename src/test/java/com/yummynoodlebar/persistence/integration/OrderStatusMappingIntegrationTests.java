@@ -1,4 +1,4 @@
-package com.yummynoodlebar.core.persistence.integration;
+package com.yummynoodlebar.persistence.integration;
 
 import static junit.framework.TestCase.assertEquals;
 
@@ -18,8 +18,8 @@ import com.gemstone.gemfire.GemFireCheckedException;
 import com.gemstone.gemfire.GemFireException;
 import com.gemstone.gemfire.cache.Region;
 import com.yummynoodlebar.config.persistence.GemfireConfiguration;
-import com.yummynoodlebar.core.persistence.domain.fixture.PersistenceFixture;
 import com.yummynoodlebar.persistence.domain.OrderStatus;
+import com.yummynoodlebar.persistence.domain.fixture.PersistenceFixture;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = {GemfireConfiguration.class })

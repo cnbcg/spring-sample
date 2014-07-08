@@ -1,4 +1,4 @@
-package com.yummynoodlebar.core.persistence.integration;
+package com.yummynoodlebar.persistence.integration;
 
 import static junit.framework.TestCase.assertEquals;
 import static junit.framework.TestCase.assertNotNull;
@@ -14,8 +14,8 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.yummynoodlebar.config.persistence.GemfireConfiguration;
-import com.yummynoodlebar.core.persistence.domain.fixture.PersistenceFixture;
 import com.yummynoodlebar.persistence.domain.OrderStatus;
+import com.yummynoodlebar.persistence.domain.fixture.PersistenceFixture;
 import com.yummynoodlebar.persistence.repository.OrderStatusRepository;
 
 @RunWith(SpringJUnit4ClassRunner.class)

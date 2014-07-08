@@ -23,7 +23,7 @@ public class OrderTests {
 
 	@Test
 	public void thatOrdersCanBeAddedAndQueried() {
-		ResponseEntity<Order> entity = postOrder(getHttpEntity(getHeaders("1bcg", "bcg")));
+		ResponseEntity<Order> entity = postOrder(getHttpEntity(getHeaders("bcg", "bcg")));
 
 		Order order = entity.getBody();
 		String path = entity.getHeaders().getLocation().getPath();
@@ -37,16 +37,16 @@ public class OrderTests {
 		assertEquals(2, order.getItems().size());
 	}
 
-//TODO	@Test
-//	public void thatOrdersCannotBeAddedAndQueriedWithBadUser() {
-//		try {
-//			ResponseEntity<Order> entity = postOrder(getHttpEntity(getHeaders("bcg", "BADPASSWORD")));
-//
-//			fail("Request Passed incorrectly with status " + entity.getStatusCode());
-//		} catch (HttpClientErrorException ex) {
-//			assertEquals(HttpStatus.UNAUTHORIZED, ex.getStatusCode());
-//		}
-//	}
+	@Test
+	public void thatOrdersCannotBeAddedAndQueriedWithBadUser() {
+		try {
+			ResponseEntity<Order> entity = postOrder(getHttpEntity(getHeaders("bcg", "BADPASSWORD")));
+
+			fail("Request Passed incorrectly with status " + entity.getStatusCode());
+		} catch (HttpClientErrorException ex) {
+			assertEquals(HttpStatus.UNAUTHORIZED, ex.getStatusCode());
+		}
+	}
 
 	@Test
 	public void thatOrdersHaveCorrectHateoasLinks() {

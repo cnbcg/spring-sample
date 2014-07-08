@@ -4,16 +4,17 @@ import javax.servlet.Filter;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 
+import org.springframework.core.annotation.Order;
 import org.springframework.core.env.ConfigurableEnvironment;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
 import org.springframework.web.filter.CharacterEncodingFilter;
-import org.springframework.web.filter.DelegatingFilterProxy;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
 import com.yummynoodlebar.config.persistence.PersistenceConfig;
 import com.yummynoodlebar.config.security.SecurityConfig;
 
+@Order(2)
 public class WebAppInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
 
 	// TODO config in application.properties
@@ -47,14 +48,12 @@ public class WebAppInitializer extends AbstractAnnotationConfigDispatcherServlet
 		CharacterEncodingFilter characterEncodingFilter = new CharacterEncodingFilter();
 		characterEncodingFilter.setEncoding("UTF-8");
 
-//TODO		Filter springSecurityFilterChain = new DelegatingFilterProxy("springSecurityFilterChain");
-//		return new Filter[] { characterEncodingFilter, springSecurityFilterChain };
 		return new Filter[] { characterEncodingFilter };
 	}
 
 	@Override
 	protected Class<?>[] getRootConfigClasses() {
-		return new Class<?>[] { PersistenceConfig.class, CoreConfig.class, SecurityConfig.class };
+		return new Class<?>[] { SecurityConfig.class, PersistenceConfig.class, CoreConfig.class };
 	}
 
 	@Override
